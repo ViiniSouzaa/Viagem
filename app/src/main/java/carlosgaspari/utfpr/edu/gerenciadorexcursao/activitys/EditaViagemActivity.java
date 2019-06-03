@@ -1,11 +1,14 @@
 package carlosgaspari.utfpr.edu.gerenciadorexcursao.activitys;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,6 +28,12 @@ import carlosgaspari.utfpr.edu.gerenciadorexcursao.modelos.Viagem;
 import carlosgaspari.utfpr.edu.gerenciadorexcursao.persistencia.ViagemDatabase;
 
 public class EditaViagemActivity extends AppCompatActivity {
+
+    private static final String ARQUIVO = "carlosgaspari.utfpr.edu.gerenciadorexcursao.TEMA";
+    private static final String OPCAO = "TEMA DARK";
+
+    boolean tema;
+
     EditText editTextLocalizacao;
     ListView listViewPassageiros;
     List<Passageiro> passageiros;
@@ -70,6 +79,8 @@ public class EditaViagemActivity extends AppCompatActivity {
         });
         recuperaAnterior();
         populaLista();
+
+        lerPreferencia();
     }
 
     private void recuperaAnterior() {
@@ -179,5 +190,21 @@ public class EditaViagemActivity extends AppCompatActivity {
         intent.putExtra("idViagem", viagem.getId());
         startActivity(intent);
         populaLista();
+    }
+
+    public void lerPreferencia(){
+        SharedPreferences s = getSharedPreferences(ARQUIVO, Context.MODE_PRIVATE);
+
+        tema = s.getBoolean(OPCAO, false);
+
+        muda();
+    }
+
+    private void muda() {
+        if(tema){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else if(!tema){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 }

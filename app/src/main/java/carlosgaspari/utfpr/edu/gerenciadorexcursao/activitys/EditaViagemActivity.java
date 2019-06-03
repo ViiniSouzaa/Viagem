@@ -48,6 +48,7 @@ public class EditaViagemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adiciona_viagem);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         editTextLocalizacao = findViewById(R.id.editTextLocalizacao);
         listViewPassageiros = findViewById(R.id.listViewPassageiros);
@@ -131,7 +132,7 @@ public class EditaViagemActivity extends AppCompatActivity {
     };
 
     private void deletaSelecionado() {
-        AlertDialog.Builder confirma = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder confirma = new AlertDialog.Builder(this);
         confirma.setMessage(getString(R.string.confirmar));
         confirma.setPositiveButton(R.string.sim, new DialogInterface.OnClickListener() {
             @Override

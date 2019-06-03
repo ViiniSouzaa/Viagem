@@ -28,6 +28,6 @@ public interface DaoPassageiro {
     @Query("SELECT * FROM passageiro ORDER BY nome ASC")
     List<Passageiro> getAll();
 
-    @Query("SELECT * FROM passageiro WHERE id = :id")
-    List<Passageiro> getByViagem(long id);
+    @Query("SELECT * FROM passageiro WHERE idViagem = :idViagem")
+    List<Passageiro> getByViagem(long idViagem);
 }

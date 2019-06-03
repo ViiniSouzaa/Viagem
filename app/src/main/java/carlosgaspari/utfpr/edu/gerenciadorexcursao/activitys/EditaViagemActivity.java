@@ -68,13 +68,13 @@ public class EditaViagemActivity extends AppCompatActivity {
                 return true;
             }
         });
+        recuperaAnterior();
         populaLista();
     }
 
     private void recuperaAnterior() {
         id = getIntent().getLongExtra("idViagem", -1);
         viagem = ViagemDatabase.getDatabase(getApplicationContext()).daoViagem().getById(id);
-        passageiros = ViagemDatabase.getDatabase(getApplicationContext()).daoPassageiro().getByViagem(id);
         editTextLocalizacao.setText(viagem.getLocalizacao());
     }
 
@@ -141,12 +141,12 @@ public class EditaViagemActivity extends AppCompatActivity {
     private void editaSelecionado() {
         Intent intent = new Intent(this, EditaPassageiroBanco.class);
         intent.putExtra("id", passageiros.get(positionSelected).getId());
-        intent.putExtra("idViagem", id);
+        intent.putExtra("idViagem", viagem.getId());
         startActivity(intent);
     }
 
     private void populaLista() {
-        recuperaAnterior();
+        passageiros = ViagemDatabase.getDatabase(getApplicationContext()).daoPassageiro().getByViagem(id);
         ArrayAdapter<Passageiro> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, passageiros);
         listViewPassageiros.setAdapter(adapter);
         registerForContextMenu(listViewPassageiros);

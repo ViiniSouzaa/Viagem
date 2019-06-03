@@ -16,6 +16,7 @@ public class EditaPassageiroBanco extends AppCompatActivity {
     long id;
     Intent intent;
     Passageiro passageiro;
+    long idViagem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class EditaPassageiroBanco extends AppCompatActivity {
     }
 
     private void recuperaPassageiros() {
+        idViagem = intent.getLongExtra("idViagem", -1);
         id = intent.getLongExtra("id", -1);
         passageiro = ViagemDatabase.getDatabase(getApplicationContext()).daoPassageiro().getById(id);
 
@@ -53,7 +55,7 @@ public class EditaPassageiroBanco extends AppCompatActivity {
             ViagemDatabase.getDatabase(getApplicationContext()).daoPassageiro().update(passageiro);
 
             Intent intent = new Intent(this, EditaViagemActivity.class);
-            intent.putExtra("idViagem", intent.getIntExtra("idViagem", -1));
+            intent.putExtra("idViagem", idViagem);
             startActivity(intent);
         }
         if(add == R.id.menuItemCancelar){

@@ -40,6 +40,7 @@ public class ViagensActivity extends AppCompatActivity {
 
         editTextLocalizacao = findViewById(R.id.editTextLocalizacao);
         listViewPassageiros = findViewById(R.id.listViewPassageiros);
+        editTextLocalizacao.setText(getIntent().getStringExtra("localViagem"));
 
         listViewPassageiros.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -178,6 +179,7 @@ public class ViagensActivity extends AppCompatActivity {
     public void adicionaPassageiro(View view){
         Intent intent = new Intent(this, PassageirosActivity.class);
         intent.putParcelableArrayListExtra("passageiros", passageiros);
+        intent.putExtra("localViagem", editTextLocalizacao.getText().toString());
         startActivity(intent);
     }
 }

@@ -18,6 +18,7 @@ public class PassageirosActivity extends AppCompatActivity {
     EditText editTextNome, editTextCPF;
     ArrayList<Passageiro> passageiros;
     long idViagem;
+    String localViagem;
     Intent intent;
 
     @Override
@@ -28,12 +29,13 @@ public class PassageirosActivity extends AppCompatActivity {
         intent = getIntent();
         editTextNome = findViewById(R.id.editTextPassageiroNome);
         editTextCPF = findViewById(R.id.editTextPassageiroCPF);
-        idViagem = intent.getLongExtra("idViagem", -1);
 
         recuperaPassageiros();
     }
 
     private void recuperaPassageiros() {
+        localViagem = intent.getStringExtra("localViagem");
+        idViagem = intent.getLongExtra("idViagem", -1);
         passageiros = intent.getParcelableArrayListExtra("passageiros");
         if(passageiros == null){
             passageiros = new ArrayList<>();
@@ -58,10 +60,14 @@ public class PassageirosActivity extends AppCompatActivity {
                 passageiros.add(passageiro);
                 Intent intent = new Intent(this, ViagensActivity.class);
                 intent.putParcelableArrayListExtra("passageiros", passageiros);
+                intent.putExtra("localViagem", localViagem);
                 startActivity(intent);
             }else{
                 passageiro.setIdViagem(idViagem);
                 ViagemDatabase.getDatabase(getApplicationContext()).daoPassageiro().insert(passageiro);
+                Intent intent = new Intent(this, EditaViagemActivity.class);
+                intent.putExtra("idViagem", idViagem);
+                startActivity(intent);
                 this.finish();
             }
         }

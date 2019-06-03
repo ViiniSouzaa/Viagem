@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">" Tour Manager"</string>
+    <string name="app_opcoes">" options"</string>
+    <string name="app_Passageiros">"Travel directions "</string>
+    <string name="limpar">clean</string>
+    <string name="nome_invalido">" FILL THE FIELDS PROPERLY"</string>
+    <string name="sobrenome">"Last name "</string>
+    <string name="confirmar">Confirm</string>
+    <string name="addViagem">"Add new trip "</string>
+    <string name="funcionalidades">Functionalities</string>
+    <string name="autoria">Authorship</string>
+    <string name="informacoes">Information</string>
+    <string name="nomePassageiro">Name</string>
+    <string name="cpfPassageiro">CPF</string>
+    <string name="rgPassageiro">RG</string>
+    <string name="pago">Received</string>
+    <string name="app_Informacoes">Information</string>
+    <string name="app_Princ_viagem">Travels</string>
+    <string name="entrar">Login</string>
+    <string name="nome">Name</string>
+    <string name="voltar">Come back</string>
+    <string name="cadastros">Register</string>
+    <string name="viagem">TRAVELS</string>
+    <string name="passageiro">PASSENGERS</string>
+    <string name="consultas">"Inquiries "</string>
+    <string name="salvar">Save</string>
+    <string name="excluir">Delete</string>
+    <string name="alterar">Change</string>
+    <string name="gerenciar">To manage</string>
+    <string name="showViagens">Show Travels</string>
+    <string name="adicionarPassageiro">add passenger</string>
+    <string name="local">Location</string>
+    <string name="dataViagem">DATE</string>
+    <string name="sim">YES</string>
+    <string name="nao">NO</string>
+</resources>

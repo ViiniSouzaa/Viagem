@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="carlosgaspari.utfpr.edu.gerenciadorexcursao">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".activitys.InformacoesActivity"
+            android:parentActivityName=".activitys.PrincipalActivity" />
+        <activity android:name=".activitys.ViagensActivity">
+
+        </activity>
+        <activity
+            android:name=".activitys.PassageirosActivity"
+            android:parentActivityName=".activitys.PassageirosActivity"/>
+
+        <activity android:name=".activitys.PrincipalActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activitys.EditaViagemActivity">
+
+        </activity>
+        <activity android:name=".activitys.EditaPassageiroBanco"></activity>
+        <activity android:name=".activitys.EditarPassageiroActivity"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gerenciador Excursão</string>
+    <string name="app_opcoes">Opções</string>
+    <string name="app_Passageiros">Passageiros</string>
+    <string name="app_Informacoes">Informações</string>
+    <string name="app_Princ_viagem">Viagens</string>
+    <string name="entrar" translatable="false">Entrar</string>
+    <string name="limpar">Limpar</string>
+    <string name="nome_invalido">PREENCHA OS CAMPOS CORRETAMENTE</string>
+    <string name="nome">Nome</string>
+    <string name="sobrenome">Sobrenome</string>
+    <string name="voltar">Voltar</string>
+    <string name="cadastros">Cadastros</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="viagem">VIAGENS</string>
+    <string name="passageiro">PASSAGEIROS</string>
+    <string name="consultas">Consultas</string>
+    <string name="salvar">Salvar</string>
+    <string name="excluir">Excluir</string>
+    <string name="alterar">Alterar</string>
+    <string name="gerenciar">Gerenciar</string>
+    <string name="addViagem">Adicionar nova viagem</string>
+    <string name="funcionalidades">Funcionalidades</string>
+    <string name="autoria">Autoria</string>
+    <string name="informacoes">Informações</string>
+    <string name="nomePassageiro">Nome</string>
+    <string name="cpfPassageiro">CPF</string>
+    <string name="rgPassageiro">RG</string>
+    <string name="pago">Recebido</string>
+    <string name="showViagens">Listar Viagens</string>
+    <string name="adicionarPassageiro">Adicionar Passageiro</string>
+    <string name="local">Localizacao</string>
+    <string name="dataViagem">Data</string>
+    <string name="sim">SIM</string>
+    <string name="nao">NÃO</string>
+</resources>

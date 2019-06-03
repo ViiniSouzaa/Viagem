@@ -58,7 +58,7 @@ public class EditarPassageiroActivity extends AppCompatActivity {
             passageiro.setCpf(editTextCPF.getText().toString());
             passageiros.add(passageiro);
 
-            Intent intent = new Intent(this, ViagensActivity.class);
+            Intent intent = new Intent(getApplicationContext(), ViagensActivity.class);
             intent.putParcelableArrayListExtra("passageiros", passageiros);
             startActivity(intent);
         }

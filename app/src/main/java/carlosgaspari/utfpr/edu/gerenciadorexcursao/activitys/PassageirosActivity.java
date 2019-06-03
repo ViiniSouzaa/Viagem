@@ -58,14 +58,14 @@ public class PassageirosActivity extends AppCompatActivity {
             passageiro.setCpf(editTextCPF.getText().toString());
             if(idViagem == -1) {
                 passageiros.add(passageiro);
-                Intent intent = new Intent(this, ViagensActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ViagensActivity.class);
                 intent.putParcelableArrayListExtra("passageiros", passageiros);
                 intent.putExtra("localViagem", localViagem);
                 startActivity(intent);
             }else{
                 passageiro.setIdViagem(idViagem);
                 ViagemDatabase.getDatabase(getApplicationContext()).daoPassageiro().insert(passageiro);
-                Intent intent = new Intent(this, EditaViagemActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EditaViagemActivity.class);
                 intent.putExtra("idViagem", idViagem);
                 startActivity(intent);
                 this.finish();
@@ -76,6 +76,5 @@ public class PassageirosActivity extends AppCompatActivity {
         }
         return true;
     }
-
 
 }

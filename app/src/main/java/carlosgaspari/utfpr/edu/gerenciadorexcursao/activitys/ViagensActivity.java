@@ -113,7 +113,7 @@ public class ViagensActivity extends AppCompatActivity {
     };
 
     private void deletaSelecionado() {
-        AlertDialog.Builder confirma = new AlertDialog.Builder(this);
+        AlertDialog.Builder confirma = new AlertDialog.Builder(getApplicationContext());
         confirma.setMessage(getString(R.string.confirmar));
         confirma.setPositiveButton(R.string.sim, new DialogInterface.OnClickListener() {
             @Override
@@ -132,7 +132,7 @@ public class ViagensActivity extends AppCompatActivity {
     }
 
     private void editaSelecionado() {
-        Intent intent = new Intent(this, EditarPassageiroActivity.class);
+        Intent intent = new Intent(getApplicationContext(), EditarPassageiroActivity.class);
         intent.putExtra("passageiro", passageiros.get(positionSelected));
         intent.putExtra("posicao", positionSelected);
         intent.putParcelableArrayListExtra("passageiros", passageiros);
@@ -143,7 +143,7 @@ public class ViagensActivity extends AppCompatActivity {
         passageiros = getIntent().getParcelableArrayListExtra("passageiros");
         if(passageiros == null)
             passageiros = new ArrayList<>();
-        ArrayAdapter<Passageiro> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, passageiros);
+        ArrayAdapter<Passageiro> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, passageiros);
         listViewPassageiros.setAdapter(adapter);
         registerForContextMenu(listViewPassageiros);
     }
@@ -167,7 +167,7 @@ public class ViagensActivity extends AppCompatActivity {
                 ViagemDatabase.getDatabase(getApplicationContext()).daoPassageiro().insert(passageiro);
             }
 
-            Intent intent = new Intent(this, PrincipalActivity.class);
+            Intent intent = new Intent(getApplicationContext(), PrincipalActivity.class);
             startActivity(intent);
         }
         if(add == R.id.menuItemCancelar){
@@ -177,7 +177,7 @@ public class ViagensActivity extends AppCompatActivity {
     }
 
     public void adicionaPassageiro(View view){
-        Intent intent = new Intent(this, PassageirosActivity.class);
+        Intent intent = new Intent(getApplicationContext(), PassageirosActivity.class);
         intent.putParcelableArrayListExtra("passageiros", passageiros);
         intent.putExtra("localViagem", editTextLocalizacao.getText().toString());
         startActivity(intent);

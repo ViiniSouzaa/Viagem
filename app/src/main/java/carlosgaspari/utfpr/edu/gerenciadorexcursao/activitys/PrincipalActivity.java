@@ -1,11 +1,14 @@
 package carlosgaspari.utfpr.edu.gerenciadorexcursao.activitys;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import java.util.List;
 
@@ -21,10 +26,16 @@ import carlosgaspari.utfpr.edu.gerenciadorexcursao.R;
 import carlosgaspari.utfpr.edu.gerenciadorexcursao.modelos.Viagem;
 import carlosgaspari.utfpr.edu.gerenciadorexcursao.persistencia.ViagemDatabase;
 
-public class PrincipalActivity extends AppCompatActivity {
+public class PrincipalActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+
+    private static final String ARQUIVO = "carlosgaspari.utfpr.edu.gerenciadorexcursao.TEMA";
+    private static final String OPCAO = "TEMA DARK";
+
+    boolean tema;
 
     ListView listViewViagens;
     List<Viagem> viagens;
+    Switch modoDark;
 
     private ActionMode actionMode;
     private int positionSelected = -1;
@@ -34,6 +45,9 @@ public class PrincipalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+        modoDark = findViewById(R.id.tema);
+        tema = true ;
+        lerPreferencia();
 
         listViewViagens = findViewById(R.id.listViewViagens);
 
@@ -63,7 +77,20 @@ public class PrincipalActivity extends AppCompatActivity {
             }
         });
 
+        modoDark = findViewById(R.id.tema);
+
+        modoDark.setOnCheckedChangeListener(this);
+
         populaLista();
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if(modoDark.isChecked()){
+                salvaPreferencia(true);
+        }else{
+            salvaPreferencia(false);
+        }
     }
 
     private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
@@ -128,7 +155,7 @@ public class PrincipalActivity extends AppCompatActivity {
     }
 
     private void editaSelecionado() {
-        Intent intent = new Intent(this, EditaViagemActivity.class);
+        Intent intent = new Intent(getApplicationContext(), EditaViagemActivity.class);
         intent.putExtra("idViagem", viagens.get(positionSelected).getId());
         startActivity(intent);
     }
@@ -143,7 +170,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
     public void informacoes(View view){
-        Intent intent = new Intent (this, InformacoesActivity.class);
+        Intent intent = new Intent (getApplicationContext(), InformacoesActivity.class);
         startActivity(intent);
     }
 
@@ -158,9 +185,42 @@ public class PrincipalActivity extends AppCompatActivity {
         int add = item.getItemId();
 
         if(add == R.id.menuItemAdicionar){
-            Intent intent = new Intent(this, ViagensActivity.class);
+            Intent intent = new Intent(getApplicationContext(), ViagensActivity.class);
             startActivity(intent);
         }
         return true;
     }
+
+    public void salvaPreferencia(boolean opcao){
+        SharedPreferences s = getSharedPreferences(ARQUIVO, Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = s.edit();
+
+        editor.putBoolean(OPCAO, opcao);
+
+        editor.commit();
+
+        tema = opcao;
+
+        muda();
+    }
+
+    public void lerPreferencia(){
+        SharedPreferences s = getSharedPreferences(ARQUIVO, Context.MODE_PRIVATE);
+
+        tema = s.getBoolean(OPCAO, false);
+
+        muda();
+    }
+
+    private void muda() {
+        if(tema){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            modoDark.setChecked(true);
+        }else if(!tema){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            modoDark.setChecked(false);
+        }
+    }
+
 }

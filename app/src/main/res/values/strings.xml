@@ -33,4 +33,7 @@
     <string name="dataViagem">DATE</string>
     <string name="sim">YES</string>
     <string name="nao">NO</string>
+    <string name="claro">ligth</string>
+    <string name="escuro">dark</string>
+    <string name="modoEscuro">DARK MODE</string>
 </resources>

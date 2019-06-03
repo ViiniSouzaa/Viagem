@@ -54,7 +54,7 @@ public class EditaPassageiroBanco extends AppCompatActivity {
             passageiro.setCpf(editTextCPF.getText().toString());
             ViagemDatabase.getDatabase(getApplicationContext()).daoPassageiro().update(passageiro);
 
-            Intent intent = new Intent(this, EditaViagemActivity.class);
+            Intent intent = new Intent(getApplicationContext(), EditaViagemActivity.class);
             intent.putExtra("idViagem", idViagem);
             startActivity(intent);
         }
